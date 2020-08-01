@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="text" name="brand" placeholder="Marka" value = "{{ car.brand }}"><br>
+        <input type="text" name="model" placeholder="Model" value = "{{ car.model }}"><br>
+        <input type="text" name="year" placeholder="Rok" value = "{{ car.year }}"><br>
+        <select name="petrol">
+            {% for petrol in PETROL_CHOICES %}
+            <option value = "{{ petrol.0 }}" {% if car.petrol == petrol.0 %}selected{% endif %}> {{ petrol.1 }}
+            </option>
+            {% endfor %}
+        </select><br>
+        <select name="owner">
+            {% for owner in company%}
+            <option value="{{ owner.id }}">{{ owner.name }}</option>
+            {% endfor %}
+        </select><br>
+        <input type="submit" value="Zapisz">
+    </form>
+</body>
+</html>
